@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
+import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LatestMovies from "../components/latestMovies/LatestMovies";
+import PageNavButtons from "../components/PageNavButtons";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function latest({ api, imageUrl }) {
@@ -11,11 +13,16 @@ function latest({ api, imageUrl }) {
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=${page}`
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page]);
+
   const nextPage = () => {
     setPage(page + 1);
   };
 
   const prevPage = () => {
+    if (page === 1) return;
     setPage(page - 1);
   };
 
@@ -30,9 +37,7 @@ function latest({ api, imageUrl }) {
           image={imageUrl}
           searchTerm={searchTerm}
         />
-        <div>
-          <h1 onClick={() => nextPage()}>+</h1>
-        </div>
+        <PageNavButtons prevPage={prevPage} page={page} nextPage={nextPage} />
         <Footer />
       </div>
     </div>
