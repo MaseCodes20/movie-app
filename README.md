@@ -1,3 +1,8 @@
+Movie App
+
+![Movie app screen shot](https://user-images.githubusercontent.com/95643884/160029879-ac450bb2-1815-4caf-afe5-d178bc3dec93.png)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
