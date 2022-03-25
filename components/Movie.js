@@ -43,12 +43,14 @@ function Movie({ movie, image, api }) {
           </div>
 
           {videos?.map((video) => {
+            const { key, name } = video;
             return (
               <div className="centered z-10" key={video.id}>
                 {selected.find((item) => item === id) === id && (
                   <iframe
-                    src={`https://www.youtube.com/embed/${video.key}`}
-                    title={video.name}
+                    className="w-full"
+                    src={`https://www.youtube.com/embed/${key}`}
+                    title={name}
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
