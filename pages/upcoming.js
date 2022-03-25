@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import UpcomingMovies from "../components/upcomingMovies/UpcomingMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
@@ -10,14 +11,17 @@ function upcoming({ api, imageUrl }) {
   );
 
   return (
-    <div>
-      <Header setSearchTerm={setSearchTerm} />
-      <UpcomingMovies
-        movies={movies}
-        api={api}
-        image={imageUrl}
-        searchTerm={searchTerm}
-      />
+    <div className="pageContainer">
+      <div className="contentContainer">
+        <Header setSearchTerm={setSearchTerm} />
+        <UpcomingMovies
+          movies={movies}
+          api={api}
+          image={imageUrl}
+          searchTerm={searchTerm}
+        />
+        <Footer />
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import TopRatedMovies from "../components/topRatedMovies.js/TopRatedMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
@@ -10,14 +11,17 @@ function toprated({ api, imageUrl }) {
   );
 
   return (
-    <div>
-      <Header setSearchTerm={setSearchTerm} />
-      <TopRatedMovies
-        movies={movies}
-        api={api}
-        image={imageUrl}
-        searchTerm={searchTerm}
-      />
+    <div className="pageContainer">
+      <div className="contentContainer">
+        <Header setSearchTerm={setSearchTerm} />
+        <TopRatedMovies
+          movies={movies}
+          api={api}
+          image={imageUrl}
+          searchTerm={searchTerm}
+        />
+        <Footer />
+      </div>
     </div>
   );
 }

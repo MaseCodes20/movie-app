@@ -1,24 +1,40 @@
 import { useState } from "react";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LatestMovies from "../components/latestMovies/LatestMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function latest({ api, imageUrl }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
   const { movies, loadingMovies } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=${page}`
   );
 
-  console.log(searchTerm);
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const prevPage = () => {
+    setPage(page - 1);
+  };
+
+  console.log(page);
   return (
-    <div>
-      <Header setSearchTerm={setSearchTerm} />
-      <LatestMovies
-        movies={movies}
-        api={api}
-        image={imageUrl}
-        searchTerm={searchTerm}
-      />
+    <div className="pageContainer">
+      <div className="contentContainer">
+        <Header setSearchTerm={setSearchTerm} />
+        <LatestMovies
+          movies={movies}
+          api={api}
+          image={imageUrl}
+          searchTerm={searchTerm}
+        />
+        <div>
+          <h1 onClick={() => nextPage()}>+</h1>
+        </div>
+        <Footer />
+      </div>
     </div>
   );
 }

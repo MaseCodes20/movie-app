@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFetchVideos from "../hooks/useFetchVideos";
-import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
+import { PlusIcon } from "@heroicons/react/solid";
 
 function Movie({ movie, image, api }) {
   const [selected, setSelected] = useState([]);
@@ -37,7 +37,7 @@ function Movie({ movie, image, api }) {
             ) : (
               <div className="trailerButtonItems">
                 <h1>Trailer</h1>
-                <MinusIcon className="h-7" />
+                <PlusIcon className="h-7 rotate-45" />
               </div>
             )}
           </div>
