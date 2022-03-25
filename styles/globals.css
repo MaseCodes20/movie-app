@@ -24,4 +24,25 @@
   .menuItemsContainer {
     @apply origin-top-right absolute right-0 mr-5 mt-4 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10;
   }
+  .moviePosterOverlay {
+    @apply absolute opacity-0 hover:opacity-90 bottom-0 top-0 right-0 left-0 bg-pink-500 text-white;
+  }
+  .movieTitle {
+    @apply w-full text-white text-center text-3xl uppercase font-bold;
+  }
+  .trailerButton {
+    @apply absolute bottom-0 cursor-pointer z-10 text-white;
+  }
+  .trailerButtonItems {
+    @apply flex justify-center items-center rounded-lg bg-blue-500 p-1 mb-3 ml-3;
+  }
+  .ratingsContainer {
+    @apply absolute bottom-0 right-0 mb-3 mr-3;
+  }
+  .ratingsCircle {
+    @apply relative h-10 w-10 bg-pink-500 rounded-full;
+  }
+  .rating {
+    @apply centered text-center text-white font-semibold;
+  }
 }

@@ -1,27 +1,67 @@
-import React from "react";
+import { useState } from "react";
 import useFetchVideos from "../hooks/useFetchVideos";
+import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
 
 function Movie({ movie, image, api }) {
+  const [selected, setSelected] = useState([]);
   const { videos, loadingVideos } = useFetchVideos(
     `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api}&language=en-US`
   );
-  // console.log(videos);
+
+  const toggle = (id) => {
+    setSelected((prev) => {
+      if (prev.includes(id)) {
+        return prev.filter((select) => select !== id);
+      }
+      return [...prev, id];
+    });
+  };
+  const { title, poster_path, overview, vote_average, id } = movie;
   return (
     <div className="mx-auto">
       <div className="relative w-fit">
-        <img src={`${image}${movie.poster_path}`} alt={movie.title} />
+        <img src={`${image}${poster_path}`} alt={title} />
 
-        <div className="absolute opacity-0 hover:opacity-90 bottom-0 top-0 right-0 left-0 bg-pink-500 text-white">
-          <div className="w-full text-white text-center text-3xl uppercase font-bold">
-            <h1>{movie.title}</h1>
+        <div className="moviePosterOverlay">
+          <div className="movieTitle">
+            <h1>{title}</h1>
           </div>
-          <p className="centered xl:text-sm text-center">{movie.overview}</p>
+          <p className="centered xl:text-sm text-center">{overview}</p>
+
+          <div className="trailerButton" onClick={() => toggle(id)}>
+            {selected.find((item) => item === id) !== id ? (
+              <div className="trailerButtonItems">
+                <h1>Trailer</h1>
+                <PlusIcon className="h-7" />
+              </div>
+            ) : (
+              <div className="trailerButtonItems">
+                <h1>Trailer</h1>
+                <MinusIcon className="h-7" />
+              </div>
+            )}
+          </div>
+
+          {videos?.map((video) => {
+            return (
+              <div className="centered z-10" key={video.id}>
+                {selected.find((item) => item === id) === id && (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.key}`}
+                    title={video.name}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                )}
+              </div>
+            );
+          })}
         </div>
-        <div className="absolute bottom-0 right-0 mb-3 mr-3">
-          <div className="relative h-10 w-10 bg-pink-500 rounded-full">
-            <p className="centered text-center text-white font-semibold">
-              {movie.vote_average}
-            </p>
+
+        <div className="ratingsContainer">
+          <div className="ratingsCircle">
+            <p className="rating">{vote_average}</p>
           </div>
         </div>
       </div>
