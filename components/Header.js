@@ -6,18 +6,21 @@ import WebMenu from "./WebMenu";
 function Header({ setSearchTerm }) {
   const router = useRouter();
   return (
-    <div className="flex items-center sticky top-0 h-10 z-10 bg-white">
-      <div onClick={() => router.push("/")} className="cursor-pointer ml-6">
+    <div className="headerContainer">
+      <div
+        onClick={() => router.push("/")}
+        className="cursor-pointer ml-6 text-xl font-bold"
+      >
         <h1>Movie App</h1>
       </div>
-      <div className="flex-1 bg-slate-400">
+      <div className="flex flex-1 justify-center">
         <input
           type="text"
-          placeholder="Search by title"
+          placeholder="Search by title..."
           onChange={(event) => {
             setSearchTerm(event.target.value);
           }}
-          className=""
+          className="searchInput"
         />
       </div>
       <WebMenu />

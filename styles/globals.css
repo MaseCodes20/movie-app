@@ -6,8 +6,14 @@
   .centered {
     @apply absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-3/4;
   }
+  .headerContainer {
+    @apply flex items-center sticky top-0 h-10 z-10 bg-white;
+  }
+  .webMenuContainer {
+    @apply hidden md:flex justify-center items-center uppercase font-semibold mr-6;
+  }
   .webMenuItems {
-    @apply mx-2 cursor-pointer;
+    @apply mx-2 cursor-pointer hover:font-bold;
   }
   .mobileMenuLink {
     @apply flex items-center px-4 py-2 cursor-pointer;
@@ -44,5 +50,8 @@
   }
   .rating {
     @apply centered text-center text-white font-semibold;
+  }
+  .searchInput {
+    @apply md:w-[500px] text-lg placeholder:text-gray-500 pl-2 border-0 border-b-2 border-black focus:ring-0 focus:outline-none focus:border-0 focus:border-b-2 focus:border-black;
   }
 }

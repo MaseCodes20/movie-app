@@ -4,7 +4,7 @@ import React from "react";
 function WebMenu() {
   const router = useRouter();
   return (
-    <div className="hidden md:flex justify-center items-center uppercase font-bold">
+    <div className="webMenuContainer">
       <h1 onClick={() => router.push("/latest")} className="webMenuItems">
         Latest
       </h1>
