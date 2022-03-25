@@ -5,9 +5,9 @@ function Movie({ movie, image, api }) {
   const { videos, loadingVideos } = useFetchVideos(
     `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api}&language=en-US`
   );
-  console.log(videos);
+  // console.log(videos);
   return (
-    <div>
+    <div className="mx-auto">
       <div className="relative w-fit">
         <img src={`${image}${movie.poster_path}`} alt={movie.title} />
 

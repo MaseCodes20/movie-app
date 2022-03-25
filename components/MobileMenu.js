@@ -14,24 +14,21 @@ function MobileMenu() {
   return (
     <div>
       <Menu as="div" className="mr-5 md:hidden">
-        <Menu.Button
-          className="md:hidden flex justify-center items-center content-center"
-          name="menu button"
-        >
+        <Menu.Button className="menuButton" name="menu button">
           <MenuIcon className="h-7 md:hidden hover:text-pink-500" />
         </Menu.Button>
 
-        <Menu.Items className="origin-top-right absolute right-0 mr-5 mt-4 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10">
+        <Menu.Items className="menuItemsContainer">
           <div className="rounded-md">
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`flex items-center px-4 py-2 cursor-pointer ${
-                    active && "bg-pink-500 text-white"
+                  className={`mobileMenuLink ${
+                    active && "mobileMenuLinkActive rounded-t-md"
                   }`}
                   onClick={() => router.push("/latest")}
                 >
-                  <PlayIcon className="h-6 mr-3" />
+                  <PlayIcon className="menuIcon" />
                   LATEST
                 </a>
               )}
@@ -39,12 +36,12 @@ function MobileMenu() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`flex items-center px-4 py-2 cursor-pointer ${
-                    active && "bg-pink-500 text-white"
+                  className={`mobileMenuLink ${
+                    active && "mobileMenuLinkActive"
                   }`}
                   onClick={() => router.push("/upcoming")}
                 >
-                  <FilmIcon className="h-6 mr-3" />
+                  <FilmIcon className="menuIcon" />
                   UPCOMING
                 </a>
               )}
@@ -52,12 +49,12 @@ function MobileMenu() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`flex items-center px-4 py-2 cursor-pointer ${
-                    active && "bg-pink-500 text-white rounded-t-md"
+                  className={`mobileMenuLink ${
+                    active && "mobileMenuLinkActive"
                   }`}
                   onClick={() => router.push("/popular")}
                 >
-                  <FireIcon className="h-6 mr-3" />
+                  <FireIcon className="menuIcon" />
                   POPULAR
                 </a>
               )}
@@ -65,12 +62,12 @@ function MobileMenu() {
             <Menu.Item>
               {({ active }) => (
                 <a
-                  className={`flex items-center px-4 py-2 cursor-pointer ${
-                    active && "bg-pink-500 text-white rounded-b-md"
+                  className={`mobileMenuLink ${
+                    active && "mobileMenuLinkActive rounded-b-md"
                   }`}
                   onClick={() => router.push("/toprated")}
                 >
-                  <StarIcon className="h-6 mr-3" />
+                  <StarIcon className="menuIcon" />
                   TOP RATED
                 </a>
               )}

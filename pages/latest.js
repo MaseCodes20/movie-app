@@ -7,7 +7,6 @@ function latest({ api, imageUrl }) {
   const { latestMovies, loadingLatestMovies } = useFetchLatest(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=1`
   );
-  console.log(latestMovies);
   return (
     <div>
       <Header />
