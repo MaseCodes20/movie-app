@@ -1,20 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
 import UpcomingMovies from "../components/upcomingMovies/UpcomingMovies";
-import useFetchUpcoming from "../hooks/useFetchUpcoming";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 function upcoming({ api, imageUrl }) {
-  const { upcomingMovies, loadingUpcomingMovies } = useFetchUpcoming(
+  const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=1`
   );
+
   return (
     <div>
       <Header />
-      <UpcomingMovies
-        upcomingMovies={upcomingMovies}
-        api={api}
-        image={imageUrl}
-      />
+      <UpcomingMovies movies={movies} api={api} image={imageUrl} />
     </div>
   );
 }

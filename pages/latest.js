@@ -1,16 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
 import LatestMovies from "../components/latestMovies/LatestMovies";
-import useFetchLatest from "../hooks/useFetchLatest";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 function latest({ api, imageUrl }) {
-  const { latestMovies, loadingLatestMovies } = useFetchLatest(
+  const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=1`
   );
+
   return (
     <div>
       <Header />
-      <LatestMovies latestMovies={latestMovies} api={api} image={imageUrl} />
+      <LatestMovies movies={movies} api={api} image={imageUrl} />
     </div>
   );
 }

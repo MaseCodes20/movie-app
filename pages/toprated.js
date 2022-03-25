@@ -1,20 +1,17 @@
 import React from "react";
 import Header from "../components/Header";
 import TopRatedMovies from "../components/topRatedMovies.js/TopRatedMovies";
-import useFetchTopRated from "../hooks/useFetchTopRated";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 function toprated({ api, imageUrl }) {
-  const { topRatedMovies, loadingTopRatedMovies } = useFetchTopRated(
+  const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${api}&language=en-US&page=1`
   );
+
   return (
     <div>
       <Header />
-      <TopRatedMovies
-        topRatedMovies={topRatedMovies}
-        api={api}
-        image={imageUrl}
-      />
+      <TopRatedMovies movies={movies} api={api} image={imageUrl} />
     </div>
   );
 }
