@@ -1,17 +1,24 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import LatestMovies from "../components/latestMovies/LatestMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function latest({ api, imageUrl }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=1`
   );
 
+  console.log(searchTerm);
   return (
     <div>
-      <Header />
-      <LatestMovies movies={movies} api={api} image={imageUrl} />
+      <Header setSearchTerm={setSearchTerm} />
+      <LatestMovies
+        movies={movies}
+        api={api}
+        image={imageUrl}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 }

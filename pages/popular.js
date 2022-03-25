@@ -1,17 +1,23 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import PopularMovies from "../components/popularMovies/PopularMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function popular({ api, imageUrl }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/popular?api_key=${api}&language=en-US&page=1`
   );
 
   return (
     <div>
-      <Header />
-      <PopularMovies movies={movies} api={api} image={imageUrl} />
+      <Header setSearchTerm={setSearchTerm} />
+      <PopularMovies
+        movies={movies}
+        api={api}
+        image={imageUrl}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 }

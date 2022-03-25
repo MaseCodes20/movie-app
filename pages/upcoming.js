@@ -1,17 +1,23 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import UpcomingMovies from "../components/upcomingMovies/UpcomingMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function upcoming({ api, imageUrl }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=1`
   );
 
   return (
     <div>
-      <Header />
-      <UpcomingMovies movies={movies} api={api} image={imageUrl} />
+      <Header setSearchTerm={setSearchTerm} />
+      <UpcomingMovies
+        movies={movies}
+        api={api}
+        image={imageUrl}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 }

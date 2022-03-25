@@ -1,17 +1,23 @@
-import React from "react";
+import { useState } from "react";
 import Header from "../components/Header";
 import TopRatedMovies from "../components/topRatedMovies.js/TopRatedMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function toprated({ api, imageUrl }) {
+  const [searchTerm, setSearchTerm] = useState("");
   const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${api}&language=en-US&page=1`
   );
 
   return (
     <div>
-      <Header />
-      <TopRatedMovies movies={movies} api={api} image={imageUrl} />
+      <Header setSearchTerm={setSearchTerm} />
+      <TopRatedMovies
+        movies={movies}
+        api={api}
+        image={imageUrl}
+        searchTerm={searchTerm}
+      />
     </div>
   );
 }
