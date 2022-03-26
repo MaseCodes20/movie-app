@@ -9,21 +9,13 @@ function upcoming({ api, imageUrl }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const { movies, loadingMovies } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${api}&language=en-US&page=${page}`
   );
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [page]);
 
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const prevPage = () => {
-    if (page === 1) return;
-    setPage(page - 1);
-  };
   return (
     <div className="pageContainer">
       <div className="contentContainer">
@@ -34,7 +26,7 @@ function upcoming({ api, imageUrl }) {
           image={imageUrl}
           searchTerm={searchTerm}
         />
-        <PageNavButtons prevPage={prevPage} page={page} nextPage={nextPage} />
+        <PageNavButtons setPage={setPage} page={page} />
         <Footer />
       </div>
     </div>

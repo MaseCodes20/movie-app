@@ -1,4 +1,3 @@
-import { MinusIcon, PlusIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -17,15 +16,6 @@ function latest({ api, imageUrl }) {
     window.scrollTo(0, 0);
   }, [page]);
 
-  const nextPage = () => {
-    setPage(page + 1);
-  };
-
-  const prevPage = () => {
-    if (page === 1) return;
-    setPage(page - 1);
-  };
-
   console.log(page);
   return (
     <div className="pageContainer">
@@ -37,7 +27,7 @@ function latest({ api, imageUrl }) {
           image={imageUrl}
           searchTerm={searchTerm}
         />
-        <PageNavButtons prevPage={prevPage} page={page} nextPage={nextPage} />
+        <PageNavButtons setPage={setPage} page={page} />
         <Footer />
       </div>
     </div>
