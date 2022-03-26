@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import PageNavButtons from "../components/PageNavButtons";
+import SearchMovies from "../components/searchMovies/SearchMovies";
 import TopRatedMovies from "../components/topRatedMovies.js/TopRatedMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
@@ -20,12 +21,17 @@ function toprated({ api, imageUrl }) {
     <div className="pageContainer">
       <div className="contentContainer">
         <Header setSearchTerm={setSearchTerm} />
-        <TopRatedMovies
-          movies={movies}
-          api={api}
-          image={imageUrl}
-          searchTerm={searchTerm}
-        />
+        {searchTerm ? (
+          <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
+        ) : (
+          <TopRatedMovies
+            movies={movies}
+            api={api}
+            image={imageUrl}
+            searchTerm={searchTerm}
+          />
+        )}
+
         <PageNavButtons setPage={setPage} page={page} />
         <Footer />
       </div>

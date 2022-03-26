@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function useFetchMovies(url) {
   const [movies, setMovies] = useState([]);
   const [loadingMovies, setLoadingMovies] = useState(false);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
     setLoadingMovies(true);
@@ -16,9 +17,15 @@ function useFetchMovies(url) {
       }
     };
 
-    fetchMovies()
-      .then((movie) => setMovies(movie.results))
-      .finally(() => setLoadingMovies(false));
+    if (mountedRef) {
+      fetchMovies()
+        .then((movie) => setMovies(movie.results))
+        .finally(() => setLoadingMovies(false));
+    }
+
+    return () => {
+      mountedRef.current = false;
+    };
   }, [url]);
 
   return { movies, loadingMovies };

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useFetchVideos from "../hooks/useFetchVideos";
 import { PlusIcon } from "@heroicons/react/solid";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 function Movie({ movie, image, api }) {
   const [selected, setSelected] = useState([]);
-  const { videos, loadingVideos } = useFetchVideos(
+  const { movies: videos } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api}&language=en-US`
   );
 
