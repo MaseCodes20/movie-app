@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
-import PopularMovies from "../components/popularMovies/PopularMovies";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
@@ -24,15 +24,17 @@ function popular({ api, imageUrl }) {
         {searchTerm ? (
           <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
         ) : (
-          <PopularMovies
-            movies={movies}
-            api={api}
-            image={imageUrl}
-            searchTerm={searchTerm}
-          />
+          <>
+            <Movies
+              movies={movies}
+              api={api}
+              image={imageUrl}
+              searchTerm={searchTerm}
+            />
+            <PageNavButtons setPage={setPage} page={page} />
+          </>
         )}
 
-        <PageNavButtons setPage={setPage} page={page} />
         <Footer />
       </div>
     </div>

@@ -16,7 +16,7 @@
     @apply flex items-center sticky top-0 h-10 z-10 bg-white;
   }
   .webMenuContainer {
-    @apply hidden md:flex justify-center items-center uppercase font-semibold mr-6;
+    @apply hidden lg:flex justify-center items-center uppercase font-semibold mr-6;
   }
   .webMenuItems {
     @apply mx-2 cursor-pointer hover:font-bold;
@@ -31,10 +31,13 @@
     @apply h-6 mr-3;
   }
   .menuButton {
-    @apply md:hidden flex justify-center items-center content-center;
+    @apply lg:hidden flex justify-center items-center content-center;
   }
   .menuItemsContainer {
-    @apply origin-top-right absolute right-0 mr-5 mt-4 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10;
+    @apply origin-top-right absolute right-0 mr-3 mt-4 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-10;
+  }
+  .moviesContainer {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1;
   }
   .moviePosterOverlay {
     @apply absolute opacity-0 hover:opacity-90 bottom-0 top-0 right-0 left-0 bg-pink-500 text-white;

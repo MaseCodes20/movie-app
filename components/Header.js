@@ -9,11 +9,11 @@ function Header({ setSearchTerm }) {
     <div className="headerContainer">
       <div
         onClick={() => router.push("/")}
-        className="cursor-pointer ml-6 text-xl font-bold"
+        className="cursor-pointer ml-3 md:text-xl w-fit font-bold"
       >
         <h1>Movie App</h1>
       </div>
-      <div className="flex flex-1 justify-center">
+      <div className="flex flex-1 mx-auto justify-center">
         <input
           type="text"
           placeholder="Search by title..."

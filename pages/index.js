@@ -9,7 +9,7 @@ export default function Home({ api, imageUrl }) {
 
   // console.log(movies);
   return (
-    <div className="pageContainer h-screen">
+    <div className="pageContainer">
       <div className="contentContainer">
         <Head>
           <title>Movie App</title>
@@ -19,16 +19,20 @@ export default function Home({ api, imageUrl }) {
         <Header setSearchTerm={setSearchTerm} />
 
         {searchTerm ? (
-          <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
+          <div className="lg:h-[600px] lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
+            <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
+          </div>
         ) : (
-          <div className="centered text-center">
-            <h1 className="font-bold text-3xl">Welcome to the movie app</h1>
-            <p>Need a movie for movie night?</p>
+          <div className="h-screen relative">
+            <div className="centered text-center">
+              <h1 className="font-bold text-3xl">Welcome to the movie app</h1>
+              <p>Need a movie for movie night?</p>
+            </div>
           </div>
         )}
-
-        <Footer />
       </div>
+
+      <Footer />
     </div>
   );
 }

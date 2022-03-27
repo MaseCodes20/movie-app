@@ -13,9 +13,9 @@ function MobileMenu() {
   const router = useRouter();
   return (
     <div>
-      <Menu as="div" className="mr-5 md:hidden">
+      <Menu as="div" className="mr-3 lg:hidden">
         <Menu.Button className="menuButton" name="menu button">
-          <MenuIcon className="h-7 md:hidden hover:text-pink-500" />
+          <MenuIcon className="h-7 lg:hidden hover:text-pink-500" />
         </Menu.Button>
 
         <Menu.Items className="menuItemsContainer">
