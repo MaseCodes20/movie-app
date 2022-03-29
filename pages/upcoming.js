@@ -6,7 +6,7 @@ import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
-function upcoming({ api, imageUrl }) {
+function Upcoming({ api, imageUrl }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const { movies, loadingMovies } = useFetchMovies(
@@ -41,7 +41,7 @@ function upcoming({ api, imageUrl }) {
   );
 }
 
-export default upcoming;
+export default Upcoming;
 
 export async function getServerSideProps() {
   const api = process.env.TMDB_KEY;
