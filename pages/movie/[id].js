@@ -66,7 +66,7 @@ function MoviePage({
 
             <div className="mx-8">
               <div className="md:flex justify-center">
-                <div className=" mt-4 mx-auto">
+                <div className="mt-4 mx-auto">
                   <h1 className="text-center font-bold text-4xl">{title}</h1>
                   <p className="max-w-[400px] mx-auto mt-4">{overview}</p>
                   <div className="flex justify-center mt-6">
@@ -114,7 +114,7 @@ function MoviePage({
                   </div>
                 </div>
 
-                <div className="md:flex justify-center ml-2">
+                <div className="md:flex justify-center ml-2 mt-4">
                   {providers.US?.rent && (
                     <div className="mx-2">
                       <h1 className="font-bold text-center text-pink-500">

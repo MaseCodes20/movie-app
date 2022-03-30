@@ -25,8 +25,6 @@ function Movie({ movie, image, api }) {
 
   const { title, poster_path, overview, vote_average, id } = movie;
 
-  // console.log(selected);
-  console.log(videos);
   return (
     <div className="mx-auto">
       <div className="relative w-fit">
