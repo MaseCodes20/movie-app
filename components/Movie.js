@@ -22,7 +22,11 @@ function Movie({ movie, image, api }) {
   const enterMovie = () => {
     router.push(`/movie/${movie.id}`);
   };
+
   const { title, poster_path, overview, vote_average, id } = movie;
+
+  // console.log(selected);
+  console.log(videos);
   return (
     <div className="mx-auto">
       <div className="relative w-fit">
@@ -56,23 +60,25 @@ function Movie({ movie, image, api }) {
             )}
           </button>
 
-          {videos?.map((video) => {
-            const { key, name, id } = video;
-            return (
-              <div className="centered z-10" key={id}>
-                {selected.find((item) => item === id) === id && (
-                  <iframe
-                    className="w-full"
-                    src={`https://www.youtube.com/embed/${key}`}
-                    title={name}
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                )}
-              </div>
-            );
-          })}
+          {videos
+            ?.filter((movie) => movie.type === "Trailer")
+            .map((video) => {
+              const { key, name } = video;
+              return (
+                <div className="centered z-20" key={video.id}>
+                  {selected.find((item) => item === id) === id && (
+                    <iframe
+                      className="w-full"
+                      src={`https://www.youtube.com/embed/${key}`}
+                      title={name}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  )}
+                </div>
+              );
+            })}
         </div>
 
         <div className="ratingsContainer">
