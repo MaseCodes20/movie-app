@@ -19,7 +19,7 @@
     @apply hidden lg:flex justify-center items-center uppercase font-semibold mr-6;
   }
   .webMenuItems {
-    @apply mx-2 cursor-pointer hover:font-bold;
+    @apply mx-2 hover:font-bold;
   }
   .mobileMenuLink {
     @apply flex items-center px-4 py-2 cursor-pointer text-black;

@@ -4,20 +4,20 @@ import React from "react";
 function WebMenu() {
   const router = useRouter();
   return (
-    <div className="webMenuContainer">
-      <h1 onClick={() => router.push("/latest")} className="webMenuItems">
+    <nav className="webMenuContainer">
+      <button onClick={() => router.push("/latest")} className="webMenuItems">
         Latest
-      </h1>
-      <h1 onClick={() => router.push("/upcoming")} className="webMenuItems">
+      </button>
+      <button onClick={() => router.push("/upcoming")} className="webMenuItems">
         Upcoming
-      </h1>
-      <h1 onClick={() => router.push("/popular")} className="webMenuItems">
+      </button>
+      <button onClick={() => router.push("/popular")} className="webMenuItems">
         popular
-      </h1>
-      <h1 onClick={() => router.push("/toprated")} className="webMenuItems">
+      </button>
+      <button onClick={() => router.push("/toprated")} className="webMenuItems">
         Top rated
-      </h1>
-    </div>
+      </button>
+    </nav>
   );
 }
 

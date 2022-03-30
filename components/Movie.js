@@ -23,6 +23,10 @@ function Movie({ movie, image, api }) {
     router.push(`/movie/${movie.id}`);
   };
 
+  const roundToTenth = (num) => {
+    return Math.round(num * 10) / 10;
+  };
+
   const { title, poster_path, overview, vote_average, id } = movie;
 
   return (
@@ -81,7 +85,7 @@ function Movie({ movie, image, api }) {
 
         <div className="ratingsContainer">
           <div className="ratingsCircle">
-            <p className="rating">{vote_average}</p>
+            <p className="rating">{roundToTenth(vote_average)}</p>
           </div>
         </div>
       </div>

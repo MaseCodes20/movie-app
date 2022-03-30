@@ -6,13 +6,13 @@ import WebMenu from "./WebMenu";
 function Header({ setSearchTerm }) {
   const router = useRouter();
   return (
-    <div className="headerContainer">
-      <div
+    <nav className="headerContainer">
+      <button
         onClick={() => router.push("/")}
-        className="cursor-pointer ml-3 md:text-xl w-fit font-bold"
+        className="ml-3 md:text-xl w-fit font-bold"
       >
         <h1>Movie App</h1>
-      </div>
+      </button>
       <div className="flex flex-1 mx-auto justify-center">
         <input
           type="text"
@@ -25,7 +25,7 @@ function Header({ setSearchTerm }) {
       </div>
       <WebMenu />
       <MobileMenu />
-    </div>
+    </nav>
   );
 }
 
