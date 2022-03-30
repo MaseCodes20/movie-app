@@ -110,7 +110,7 @@ function MoviePage({
                   </div>
                 </div>
 
-                <div className="md:flex justify-center">
+                <div className="md:flex justify-center ml-2">
                   {providers.US?.rent && (
                     <div className="mx-2">
                       <h1 className="font-bold text-center text-pink-500">
