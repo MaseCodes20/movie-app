@@ -94,6 +94,12 @@
     @apply h-7 rotate-45;
   }
   .companiesAndGenresContainer {
-    @apply mt-2 bg-gray-500 text-black font-bold rounded-md;
+    @apply mt-2 bg-gray-500  text-black font-bold rounded-md;
+  }
+  .companiesAndGenresGrid {
+    @apply grid grid-cols-2 gap-1 justify-items-center;
+  }
+  .dataText {
+    @apply mr-2 text-pink-500;
   }
 }

@@ -46,7 +46,6 @@ function MoviePage({
     genres,
   } = details;
 
-  console.log(details);
   return (
     <div className="bg-black text-white">
       <Header setSearchTerm={setSearchTerm} />
@@ -67,23 +66,23 @@ function MoviePage({
                   <h1 className="text-center font-bold text-4xl">{title}</h1>
                   <p className="max-w-[400px] mx-auto mt-4">{overview}</p>
                   <div className="flex justify-center mt-6">
-                    <p className="mr-2">Release date:</p>
+                    <p className="dataText">Release date:</p>
                     <p>{release_date}</p>
                   </div>
 
                   <div className="flex justify-center mt-2">
-                    <p className="mr-2">Runtime:</p>
+                    <p className="dataText">Runtime:</p>
                     <p>{runtime} minutes</p>
                   </div>
 
                   <div className="flex justify-center mt-2">
-                    <p className="mr-2">Status:</p>
+                    <p className="dataText">Status:</p>
                     <p>{status}</p>
                   </div>
 
                   <div className="companiesAndGenresContainer">
                     <p className="mr-2 text-center">Production companies</p>
-                    <div className="grid grid-cols-2 gap-1 justify-items-center">
+                    <div className="companiesAndGenresGrid">
                       {production_companies?.map((company) => {
                         const { id, logo_path, name } = company;
                         return (
@@ -102,7 +101,7 @@ function MoviePage({
 
                   <div className="companiesAndGenresContainer">
                     <p className="text-center">Genres</p>
-                    <div className="grid grid-cols-2 gap-1 justify-items-center">
+                    <div className="companiesAndGenresGrid">
                       {genres?.map((genre) => {
                         const { id, name } = genre;
                         return <p key={id}>{name}</p>;
@@ -184,7 +183,7 @@ function MoviePage({
                           const { character, name, cast_id } = cast;
                           return (
                             <div className="flex" key={cast_id}>
-                              <p className="mr-2 text-pink-500">{character}:</p>
+                              <p className="dataText">{character}:</p>
                               <p>{name}</p>
                             </div>
                           );
