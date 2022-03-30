@@ -165,17 +165,19 @@ function MoviePage({
                     )}
                   </button>
 
-                  <button
-                    className="videosButton"
-                    onClick={() => toggleVideos(id)}
-                  >
-                    {selectedCast.find((item) => item === id) !== id && (
-                      <div className="buttonContent">
-                        <h1>Videos</h1>
-                        <PlusIcon className="h-7" />
-                      </div>
-                    )}
-                  </button>
+                  {videos.length >= 1 && (
+                    <button
+                      className="videosButton"
+                      onClick={() => toggleVideos(id)}
+                    >
+                      {selectedVideos.find((item) => item === id) !== id && (
+                        <div className="buttonContent">
+                          <h1>Videos</h1>
+                          <PlusIcon className="h-7" />
+                        </div>
+                      )}
+                    </button>
+                  )}
                 </div>
 
                 {selectedCast.find((item) => item === id) === id && (

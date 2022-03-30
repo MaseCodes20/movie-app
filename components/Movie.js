@@ -48,19 +48,21 @@ function Movie({ movie, image, api }) {
               More info
             </h1>
           </button>
-          <button className="trailerButton" onClick={() => toggle(id)}>
-            {selected.find((item) => item === id) !== id ? (
-              <div className="trailerButtonItems">
-                <h1>Trailer</h1>
-                <PlusIcon className="h-7" />
-              </div>
-            ) : (
-              <div className="trailerButtonItems">
-                <h1>Trailer</h1>
-                <PlusIcon className="h-7 rotate-45" />
-              </div>
-            )}
-          </button>
+          {videos.length >= 1 && (
+            <button className="trailerButton" onClick={() => toggle(id)}>
+              {selected.find((item) => item === id) !== id ? (
+                <div className="trailerButtonItems">
+                  <h1>Trailer</h1>
+                  <PlusIcon className="h-7" />
+                </div>
+              ) : (
+                <div className="trailerButtonItems">
+                  <h1>Trailer</h1>
+                  <PlusIcon className="h-7 rotate-45" />
+                </div>
+              )}
+            </button>
+          )}
 
           {videos
             ?.filter((movie) => movie.type === "Trailer")
