@@ -4,7 +4,7 @@
 
 @layer components {
   .pageContainer {
-    @apply relative bg-black text-white;
+    @apply relative bg-black text-white min-h-screen;
   }
   .contentContainer {
     @apply pb-[66px] lg:pb-12;

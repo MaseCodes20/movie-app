@@ -263,6 +263,7 @@ function MoviePage({
                       image={imageUrl}
                       key={movie.id}
                       api={api}
+                      setSearchTerm={setSearchTerm}
                     />
                   );
                 })}

@@ -19,7 +19,7 @@ export default function Home({ api, imageUrl }) {
         <Header setSearchTerm={setSearchTerm} />
 
         {searchTerm ? (
-          <div className="lg:h-[600px] xl:h-[625px] lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
+          <div className="lg:h-[600px]  lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
             <SearchMovies
               api={api}
               image={imageUrl}
@@ -28,11 +28,9 @@ export default function Home({ api, imageUrl }) {
             />
           </div>
         ) : (
-          <div className="h-screen relative">
-            <div className="centered text-center">
-              <h1 className="font-bold text-3xl">Welcome to the movie app</h1>
-              <p>Need a movie for movie night?</p>
-            </div>
+          <div className="centered text-center">
+            <h1 className="font-bold text-3xl">Welcome to the movie app</h1>
+            <p>Need a movie for movie night?</p>
           </div>
         )}
 
