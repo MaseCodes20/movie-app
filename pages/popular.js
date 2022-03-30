@@ -22,7 +22,12 @@ function Popular({ api, imageUrl }) {
       <div className="contentContainer">
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
+          <SearchMovies
+            api={api}
+            image={imageUrl}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
         ) : (
           <>
             <Movies

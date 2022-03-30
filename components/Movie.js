@@ -3,7 +3,7 @@ import { PlusIcon } from "@heroicons/react/solid";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { useRouter } from "next/router";
 
-function Movie({ movie, image, api }) {
+function Movie({ movie, image, api, setSearchTerm }) {
   const [selected, setSelected] = useState([]);
   const router = useRouter();
   const { movies: videos } = useFetchMovies(
@@ -21,6 +21,7 @@ function Movie({ movie, image, api }) {
 
   const enterMovie = () => {
     router.push(`/movie/${movie.id}`);
+    setSearchTerm("");
   };
 
   const roundToTenth = (num) => {

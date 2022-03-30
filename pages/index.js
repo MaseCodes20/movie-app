@@ -19,8 +19,13 @@ export default function Home({ api, imageUrl }) {
         <Header setSearchTerm={setSearchTerm} />
 
         {searchTerm ? (
-          <div className="lg:h-[600px] lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
-            <SearchMovies api={api} image={imageUrl} searchTerm={searchTerm} />
+          <div className="lg:h-[600px] xl:h-[625px] lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
+            <SearchMovies
+              api={api}
+              image={imageUrl}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
           </div>
         ) : (
           <div className="h-screen relative">
@@ -30,9 +35,9 @@ export default function Home({ api, imageUrl }) {
             </div>
           </div>
         )}
-      </div>
 
-      <Footer />
+        <Footer />
+      </div>
     </div>
   );
 }

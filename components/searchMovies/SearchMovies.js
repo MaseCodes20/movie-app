@@ -2,7 +2,7 @@ import React from "react";
 import useFetchMovies from "../../hooks/useFetchMovies";
 import Movie from "../Movie";
 
-function SearchMovies({ image, api, searchTerm }) {
+function SearchMovies({ image, api, searchTerm, setSearchTerm }) {
   const { movies } = useFetchMovies(
     `https://api.themoviedb.org/3/search/movie?api_key=${api}&language=en-US&query=${searchTerm}&include_adult=false`
   );
@@ -21,7 +21,15 @@ function SearchMovies({ image, api, searchTerm }) {
         })
         .filter((video) => video.poster_path)
         .map((movie) => {
-          return <Movie movie={movie} image={image} key={movie.id} api={api} />;
+          return (
+            <Movie
+              movie={movie}
+              image={image}
+              key={movie.id}
+              api={api}
+              setSearchTerm={setSearchTerm}
+            />
+          );
         })}
     </div>
   );
