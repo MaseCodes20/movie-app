@@ -35,6 +35,7 @@ function Upcoming({ api, imageUrl }) {
               api={api}
               image={imageUrl}
               searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
             />
             <PageNavButtons setPage={setPage} page={page} />
           </>
