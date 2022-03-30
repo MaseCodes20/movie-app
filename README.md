@@ -1,6 +1,22 @@
 Movie App
 
-![Movie app screen shot](https://user-images.githubusercontent.com/95643884/160029879-ac450bb2-1815-4caf-afe5-d178bc3dec93.png)
+1. Search for movies using the search bar or the categories in the navigation bar
+2. See the ratings, read the synopsis or watch the trailer of a movie.
+
+Home page
+![Movie app home screen](https://user-images.githubusercontent.com/95643884/160734256-933559e8-af92-42cb-80e4-05dc6d5e81f9.png)
+
+Search functionality
+![Movie app seacrh](https://user-images.githubusercontent.com/95643884/160736635-652e46df-ea9c-4341-bd44-f59e7fd5e7de.png)
+
+Latest page
+![Movie app latest page](https://user-images.githubusercontent.com/95643884/160736737-2d722a86-8252-42f8-99cc-0d0097e0e3c6.png)
+
+Hover over movie
+![Movie app hover](https://user-images.githubusercontent.com/95643884/160736778-cd2ef5ae-d25c-417b-a61f-e08cb75227fc.png)
+
+Movie page: view more info about the movie
+![Movie app movie page info](https://user-images.githubusercontent.com/95643884/160736932-fc9c5ee8-43ab-4f1e-bea8-43521c38d437.png)
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
