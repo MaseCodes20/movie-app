@@ -1,6 +1,6 @@
 Movie App
 
-1. Search for movies using the search bar or the categories in the navigation bar
+1. Search for movies using the search bar or by the categories in the navigation bar
 2. See the ratings, read the synopsis or watch the trailer of a movie.
 
 Home page
