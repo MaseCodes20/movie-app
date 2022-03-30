@@ -1,5 +1,5 @@
 import { PlusIcon } from "@heroicons/react/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/Header";
 import Movie from "../../components/Movie";
 import SearchMovies from "../../components/searchMovies/SearchMovies";
@@ -17,6 +17,10 @@ function MoviePage({
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCast, setSelectedCast] = useState([]);
   const [selectedVideos, setSelectedVideos] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [selectedCast, selectedVideos]);
 
   const toggleCast = (id) => {
     setSelectedCast((prev) => {
