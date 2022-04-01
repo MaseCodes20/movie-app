@@ -3,6 +3,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Cast from "../../components/moviePage/Cast";
 import Details from "../../components/moviePage/Details";
+import Poster from "../../components/moviePage/Poster";
 import Providers from "../../components/moviePage/Providers";
 import SimilarMovies from "../../components/moviePage/SimilarMovies";
 import Videos from "../../components/moviePage/Videos";
@@ -36,10 +37,10 @@ function MoviePage({
         ) : (
           <div className="mx-auto ">
             <div className="md:flex justify-center bg-black text-white">
-              <img
-                src={`${imageUrl}${poster_path}`}
-                alt={title}
-                className="max-h-screen mx-auto"
+              <Poster
+                imageUrl={imageUrl}
+                poster_path={poster_path}
+                title={title}
               />
 
               <div className="mx-8">
