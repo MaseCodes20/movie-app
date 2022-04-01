@@ -39,7 +39,7 @@ function MoviePage({
               <img
                 src={`${imageUrl}${poster_path}`}
                 alt={title}
-                className="max-h-screen"
+                className="max-h-screen mx-auto"
               />
 
               <div className="mx-8">
