@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
@@ -30,14 +31,20 @@ function Popular({ api, imageUrl }) {
           />
         ) : (
           <>
-            <Movies
-              movies={movies}
-              api={api}
-              image={imageUrl}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            />
-            <PageNavButtons setPage={setPage} page={page} />
+            {loadingMovies ? (
+              <Loading loadingMovies={loadingMovies} />
+            ) : (
+              <>
+                <Movies
+                  movies={movies}
+                  api={api}
+                  image={imageUrl}
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                />
+                <PageNavButtons setPage={setPage} page={page} />
+              </>
+            )}
           </>
         )}
 

@@ -7,7 +7,6 @@ import SearchMovies from "../components/searchMovies/SearchMovies";
 export default function Home({ api, imageUrl }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // console.log(movies);
   return (
     <div className="pageContainer">
       <div className="contentContainer">
