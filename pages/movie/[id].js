@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
@@ -26,6 +27,11 @@ function MoviePage({
   return (
     <div className="pageContainer">
       <div className="contentContainer">
+        <Head>
+          <title>{title}</title>
+          <meta name="description" content={title} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
           <SearchMovies
