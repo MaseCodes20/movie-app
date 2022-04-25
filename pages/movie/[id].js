@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { searchState } from "../../atoms/searchAtom";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Cast from "../../components/moviePage/Cast";
@@ -20,7 +21,7 @@ function MoviePage({
   api,
   id,
 }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState);
 
   const { title, poster_path } = details;
 
@@ -34,12 +35,7 @@ function MoviePage({
         </Head>
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies
-            api={api}
-            image={imageUrl}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
+          <SearchMovies api={api} image={imageUrl} />
         ) : (
           <div className="mx-auto ">
             <div className="md:flex justify-center bg-black text-white">
@@ -68,7 +64,6 @@ function MoviePage({
               similarMovies={similarMovies}
               image={imageUrl}
               api={api}
-              setSearchTerm={setSearchTerm}
             />
           </div>
         )}
@@ -85,35 +80,38 @@ export async function getServerSideProps(context) {
   const id = context.query.id;
   const imageUrl = process.env.IMG_URL;
 
-  const fetchVideos = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api}&language=en-US`
-  );
-  const videos = await fetchVideos.json().then((videos) => videos.results);
+  const [
+    fetchVideos,
+    fetchDetails,
+    fetchCredits,
+    fetchProviders,
+    fetchSimilarMovies,
+  ] = await Promise.all([
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${api}&language=en-US`
+    ),
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${api}&language=en-US`
+    ),
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api}&language=en-US`
+    ),
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${api}`
+    ),
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${api}&language=en-US&page=1`
+    ),
+  ]);
 
-  const fetchDetails = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${api}&language=en-US`
-  );
-  const details = await fetchDetails.json();
-
-  const fetchCredits = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${api}&language=en-US`
-  );
-  const credits = await fetchCredits.json().then((casts) => casts.cast);
-
-  const fetchProviders = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=${api}`
-  );
-  const providers = await fetchProviders
-    .json()
-    .then((providers) => providers.results);
-
-  const fetchSimilarMovies = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${api}&language=en-US&page=1`
-  );
-  const similarMovies = await fetchSimilarMovies
-    .json()
-    .then((similarMovies) => similarMovies.results);
-
+  const [videos, details, credits, providers, similarMovies] =
+    await Promise.all([
+      fetchVideos.json().then((videos) => videos.results),
+      fetchDetails.json(),
+      fetchCredits.json().then((casts) => casts.cast),
+      fetchProviders.json().then((providers) => providers.results),
+      fetchSimilarMovies.json().then((similarMovies) => similarMovies.results),
+    ]);
   return {
     props: {
       videos,

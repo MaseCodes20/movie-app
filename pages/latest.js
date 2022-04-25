@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Loading from "../components/Loading";
@@ -8,7 +10,7 @@ import SearchMovies from "../components/searchMovies/SearchMovies";
 import useFetchMovies from "../hooks/useFetchMovies";
 
 function Latest({ api, imageUrl }) {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [page, setPage] = useState(1);
   const { movies, loadingMovies } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=${page}`
@@ -23,25 +25,14 @@ function Latest({ api, imageUrl }) {
       <div className="contentContainer">
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies
-            api={api}
-            image={imageUrl}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
+          <SearchMovies api={api} image={imageUrl} />
         ) : (
           <>
             {loadingMovies ? (
               <Loading loadingMovies={loadingMovies} />
             ) : (
               <>
-                <Movies
-                  movies={movies}
-                  api={api}
-                  image={imageUrl}
-                  searchTerm={searchTerm}
-                  setSearchTerm={setSearchTerm}
-                />
+                <Movies movies={movies} api={api} image={imageUrl} />
                 <PageNavButtons setPage={setPage} page={page} />
               </>
             )}

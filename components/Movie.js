@@ -2,9 +2,12 @@ import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { useRouter } from "next/router";
+import { useRecoilState } from "recoil";
+import { searchState } from "../atoms/searchAtom";
 
-function Movie({ movie, image, api, setSearchTerm }) {
+function Movie({ movie, image, api }) {
   const [selected, setSelected] = useState([]);
+  const [serchTerm, setSearchTerm] = useRecoilState(searchState);
   const router = useRouter();
   const { movies: videos } = useFetchMovies(
     `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api}&language=en-US`
