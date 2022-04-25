@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
+import { loadingState } from "../atoms/loading";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Loading from "../components/Loading";
 import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
@@ -11,6 +13,7 @@ function Popular({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [popularMovies, setPopularMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useRecoilState(loadingState);
 
   const getPopularMovies = async () => {
     try {
@@ -21,7 +24,10 @@ function Popular({ imageUrl }) {
         },
       })
         .then((response) => response.json())
-        .then((response) => setPopularMovies(response.data));
+        .then((response) => {
+          setPopularMovies(response.data);
+          setLoading(false);
+        });
 
       return response;
     } catch (error) {
@@ -42,8 +48,14 @@ function Popular({ imageUrl }) {
           <SearchMovies image={imageUrl} />
         ) : (
           <>
-            <Movies movies={popularMovies} image={imageUrl} />
-            <PageNavButtons setPage={setPage} page={page} />
+            {loading ? (
+              <Loading loadingMovies={loading} />
+            ) : (
+              <>
+                <Movies movies={popularMovies} image={imageUrl} />
+                <PageNavButtons setPage={setPage} page={page} />
+              </>
+            )}
           </>
         )}
 
