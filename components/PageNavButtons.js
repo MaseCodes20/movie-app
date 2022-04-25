@@ -2,12 +2,12 @@ import React from "react";
 
 function PageNavButtons({ setPage, page }) {
   const nextPage = () => {
-    setPage(page + 1);
+    setPage((prev) => prev + 1);
   };
 
   const prevPage = () => {
     if (page === 1) return;
-    setPage(page - 1);
+    setPage((prev) => prev - 1);
   };
   return (
     <div className="pageNavContainer">

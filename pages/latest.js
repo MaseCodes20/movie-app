@@ -3,21 +3,40 @@ import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Loading from "../components/Loading";
 import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
-import useFetchMovies from "../hooks/useFetchMovies";
+import Loading from "../components/Loading";
 
-function Latest({ api, imageUrl }) {
+function Latest({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+  const [latestMovies, setLatestMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const { movies, loadingMovies } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${api}&language=en-US&page=${page}`
-  );
+  const [loading, setLoading] = useState(true);
+
+  const getLatestMovies = async () => {
+    try {
+      const response = await fetch(`/api/latest?page=${page}`, {
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setLatestMovies(response.data);
+          setLoading(false);
+        });
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getLatestMovies();
   }, [page]);
 
   return (
@@ -25,14 +44,16 @@ function Latest({ api, imageUrl }) {
       <div className="contentContainer">
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies api={api} image={imageUrl} />
+          <SearchMovies image={imageUrl} />
         ) : (
           <>
-            {loadingMovies ? (
-              <Loading loadingMovies={loadingMovies} />
+            {loading ? (
+              <>
+                <Loading loadingMovies={loading} />
+              </>
             ) : (
               <>
-                <Movies movies={movies} api={api} image={imageUrl} />
+                <Movies movies={latestMovies} image={imageUrl} />
                 <PageNavButtons setPage={setPage} page={page} />
               </>
             )}
@@ -47,11 +68,10 @@ function Latest({ api, imageUrl }) {
 
 export default Latest;
 
-export async function getServerSideProps() {
-  const api = process.env.TMDB_KEY;
+export async function getServerSideProps(context) {
   const imageUrl = process.env.IMG_URL;
-  const genresList = process.env.GENRES_LIST_HTTP;
+
   return {
-    props: { api, imageUrl, genresList },
+    props: { imageUrl },
   };
 }

@@ -1,26 +1,10 @@
-import { useState } from "react";
-import { PlusIcon } from "@heroicons/react/solid";
-import useFetchMovies from "../hooks/useFetchMovies";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 
-function Movie({ movie, image, api }) {
-  const [selected, setSelected] = useState([]);
+function Movie({ movie, image }) {
   const [serchTerm, setSearchTerm] = useRecoilState(searchState);
   const router = useRouter();
-  const { movies: videos } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${api}&language=en-US`
-  );
-
-  const toggle = (id) => {
-    setSelected((prev) => {
-      if (prev.includes(id)) {
-        return prev.filter((select) => select !== id);
-      }
-      return [...prev, id];
-    });
-  };
 
   const enterMovie = () => {
     router.push(`/movie/${movie.id}`);
@@ -52,41 +36,6 @@ function Movie({ movie, image, api }) {
               More info
             </h1>
           </button>
-          {videos.length >= 1 && (
-            <button className="trailerButton" onClick={() => toggle(id)}>
-              {selected.find((item) => item === id) !== id ? (
-                <div className="trailerButtonItems">
-                  <h1>Trailer</h1>
-                  <PlusIcon className="h-7" />
-                </div>
-              ) : (
-                <div className="trailerButtonItems">
-                  <h1>Trailer</h1>
-                  <PlusIcon className="h-7 rotate-45" />
-                </div>
-              )}
-            </button>
-          )}
-
-          {videos
-            ?.filter((movie) => movie.type === "Trailer")
-            .map((video) => {
-              const { key, name } = video;
-              return (
-                <div className="centered z-20" key={video.id}>
-                  {selected.find((item) => item === id) === id && (
-                    <iframe
-                      className="w-full"
-                      src={`https://www.youtube.com/embed/${key}`}
-                      title={name}
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  )}
-                </div>
-              );
-            })}
         </div>
 
         <div className="ratingsContainer">

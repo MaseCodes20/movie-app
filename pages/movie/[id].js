@@ -18,7 +18,6 @@ function MoviePage({
   videos,
   similarMovies,
   imageUrl,
-  api,
   id,
 }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
@@ -35,7 +34,7 @@ function MoviePage({
         </Head>
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies api={api} image={imageUrl} />
+          <SearchMovies image={imageUrl} />
         ) : (
           <div className="mx-auto ">
             <div className="md:flex justify-center bg-black text-white">
@@ -60,11 +59,7 @@ function MoviePage({
               </div>
             </div>
 
-            <SimilarMovies
-              similarMovies={similarMovies}
-              image={imageUrl}
-              api={api}
-            />
+            <SimilarMovies similarMovies={similarMovies} image={imageUrl} />
           </div>
         )}
         <Footer />
@@ -77,7 +72,7 @@ export default MoviePage;
 
 export async function getServerSideProps(context) {
   const api = process.env.TMDB_KEY;
-  const id = context.query.id;
+  const { id } = context.query;
   const imageUrl = process.env.IMG_URL;
 
   const [
@@ -120,7 +115,6 @@ export async function getServerSideProps(context) {
       providers,
       similarMovies,
       id,
-      api,
       imageUrl,
     },
   };

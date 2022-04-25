@@ -1,14 +1,12 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { moviesState } from "../../atoms/moviesState";
 import { searchState } from "../../atoms/searchAtom";
-import useFetchMovies from "../../hooks/useFetchMovies";
 import Movie from "../Movie";
 
-function SearchMovies({ image, api, setSearchTerm }) {
+function SearchMovies({ image }) {
   const searchTerm = useRecoilValue(searchState);
-  const { movies } = useFetchMovies(
-    `https://api.themoviedb.org/3/search/movie?api_key=${api}&language=en-US&query=${searchTerm}&include_adult=false`
-  );
+  const movies = useRecoilValue(moviesState);
 
   return (
     <div className="moviesContainer">
@@ -24,7 +22,7 @@ function SearchMovies({ image, api, setSearchTerm }) {
         })
         .filter((video) => video.poster_path)
         .map((movie) => {
-          return <Movie movie={movie} image={image} key={movie.id} api={api} />;
+          return <Movie movie={movie} image={image} key={movie.id} />;
         })}
     </div>
   );

@@ -3,21 +3,35 @@ import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Loading from "../components/Loading";
 import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
-import useFetchMovies from "../hooks/useFetchMovies";
 
-function Toprated({ api, imageUrl }) {
+function Toprated({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+  const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [page, setPage] = useState(1);
-  const { movies, loadingMovies } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/top_rated?api_key=${api}&language=en-US&page=${page}`
-  );
+
+  const getTopRatedMovies = async () => {
+    try {
+      const response = await fetch(`/api/toprated?page=${page}`, {
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((response) => response.json())
+        .then((movies) => setTopRatedMovies(movies.data));
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    getTopRatedMovies();
   }, [page]);
 
   return (
@@ -25,17 +39,11 @@ function Toprated({ api, imageUrl }) {
       <div className="contentContainer">
         <Header setSearchTerm={setSearchTerm} />
         {searchTerm ? (
-          <SearchMovies api={api} image={imageUrl} />
+          <SearchMovies image={imageUrl} />
         ) : (
           <>
-            {loadingMovies ? (
-              <Loading loadingMovies={loadingMovies} />
-            ) : (
-              <>
-                <Movies movies={movies} api={api} image={imageUrl} />
-                <PageNavButtons setPage={setPage} page={page} />
-              </>
-            )}
+            <Movies movies={topRatedMovies} image={imageUrl} />
+            <PageNavButtons setPage={setPage} page={page} />
           </>
         )}
 
@@ -48,10 +56,8 @@ function Toprated({ api, imageUrl }) {
 export default Toprated;
 
 export async function getServerSideProps() {
-  const api = process.env.TMDB_KEY;
   const imageUrl = process.env.IMG_URL;
-  const genresList = process.env.GENRES_LIST_HTTP;
   return {
-    props: { api, imageUrl, genresList },
+    props: { imageUrl },
   };
 }

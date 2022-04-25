@@ -1,11 +1,12 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 
-export default function Home({ api, imageUrl }) {
-  const [searchTerm, setSearchTerm] = useState("");
+export default function Home({ imageUrl }) {
+  const [searchTerm, setSearchTerm] = useRecoilState(searchState);
 
   return (
     <div className="pageContainer">
@@ -17,14 +18,9 @@ export default function Home({ api, imageUrl }) {
         </Head>
         <Header setSearchTerm={setSearchTerm} />
 
-        {searchTerm ? (
+        {searchTerm !== "" ? (
           <div className="lg:h-[600px]  lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
-            <SearchMovies
-              api={api}
-              image={imageUrl}
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            />
+            <SearchMovies image={imageUrl} />
           </div>
         ) : (
           <div className="centered text-center">
@@ -40,10 +36,8 @@ export default function Home({ api, imageUrl }) {
 }
 
 export async function getServerSideProps() {
-  const api = process.env.TMDB_KEY;
   const imageUrl = process.env.IMG_URL;
-  const genresList = process.env.GENRES_LIST_HTTP;
   return {
-    props: { api, imageUrl, genresList },
+    props: { imageUrl },
   };
 }
