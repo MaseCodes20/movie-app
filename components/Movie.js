@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
+import TrailerButton from "./TrailerButton";
 
 function Movie({ movie, image }) {
   const [serchTerm, setSearchTerm] = useRecoilState(searchState);
@@ -27,6 +28,8 @@ function Movie({ movie, image }) {
             <h1>{title}</h1>
           </div>
           <p className="centered xl:text-sm text-center">{overview}</p>
+
+          <TrailerButton id={id} />
 
           <button
             className="absolute bottom-0 left-1/2 right-1/2 z-10 mb-3 text-white"

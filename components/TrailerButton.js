@@ -1,17 +1,38 @@
 import { PlusIcon } from "@heroicons/react/solid";
-import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { movieIdState } from "../atoms/movieIdAtom";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { loadingState } from "../atoms/loading";
 import { selectedState } from "../atoms/selectedAtom";
-import useFetchMovies from "../hooks/useFetchMovies";
 
-function TrailerButton({ id, api }) {
+function TrailerButton({ id }) {
   const [selected, setSelected] = useRecoilState(selectedState);
-  const movieId = useRecoilValue(movieIdState);
+  const [loading, setLoading] = useRecoilState(loadingState);
 
-  const { movies: videos } = useFetchMovies(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${api}&language=en-US`
-  );
+  const [trailers, setTrailers] = useState([]);
+
+  const getTrailers = async () => {
+    try {
+      const response = await fetch(`/api/trailer?id=${id}`, {
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setTrailers(response.data);
+          setLoading(false);
+        });
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getTrailers();
+  }, []);
 
   const toggle = (id) => {
     setSelected((prev) => {
@@ -21,24 +42,27 @@ function TrailerButton({ id, api }) {
       return [...prev, id];
     });
   };
-  console.log(selected);
   return (
     <>
-      <button className="trailerButton" onClick={() => toggle(id)}>
-        {selected.find((item) => item === id) !== id ? (
-          <div className="trailerButtonItems">
-            <h1>Trailer</h1>
-            <PlusIcon className="h-7" />
-          </div>
-        ) : (
-          <div className="trailerButtonItems">
-            <h1>Trailer</h1>
-            <PlusIcon className="h-7 rotate-45" />
-          </div>
-        )}
-      </button>
+      {trailers.length > 0 && (
+        <>
+          <button className="trailerButton" onClick={() => toggle(id)}>
+            {selected.find((item) => item === id) !== id ? (
+              <div className="trailerButtonItems">
+                <h1>Trailer</h1>
+                <PlusIcon className="h-7" />
+              </div>
+            ) : (
+              <div className="trailerButtonItems">
+                <h1>Trailer</h1>
+                <PlusIcon className="h-7 rotate-45" />
+              </div>
+            )}
+          </button>
+        </>
+      )}
 
-      {videos
+      {trailers
         ?.filter((movie) => movie.type === "Trailer")
         .map((video) => {
           const { key, name } = video;
@@ -62,14 +86,3 @@ function TrailerButton({ id, api }) {
 }
 
 export default TrailerButton;
-
-export async function getServerSideProps(context) {
-  const api = process.env.TMDB_KEY;
-
-  console.log(context);
-  return {
-    props: {
-      api,
-    },
-  };
-}
