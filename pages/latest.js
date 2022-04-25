@@ -38,6 +38,7 @@ function Latest({ imageUrl }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     getLatestMovies();
+    setSearchTerm("");
   }, [page]);
 
   return (

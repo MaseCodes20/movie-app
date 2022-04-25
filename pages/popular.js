@@ -38,6 +38,7 @@ function Popular({ imageUrl }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     getPopularMovies();
+    setSearchTerm("");
   }, [page]);
 
   return (

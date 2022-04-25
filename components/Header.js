@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { moviesState } from "../atoms/moviesState";
 import { searchState } from "../atoms/searchAtom";
@@ -20,7 +19,9 @@ function Header({ setSearchTerm }) {
       },
     })
       .then((response) => response.json())
-      .then((response) => setMovies(response.data))
+      .then((response) => {
+        setMovies(response.data);
+      })
       .catch((error) => console.error(error));
   };
 

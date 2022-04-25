@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
@@ -7,6 +8,10 @@ import SearchMovies from "../components/searchMovies/SearchMovies";
 
 export default function Home({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
+
+  useEffect(() => {
+    setSearchTerm("");
+  }, []);
 
   return (
     <div className="pageContainer">

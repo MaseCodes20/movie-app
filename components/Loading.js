@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ClipLoader, PacmanLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 function Loading({ loadingMovies }) {
   const [color, setColor] = useState("#ffffff");

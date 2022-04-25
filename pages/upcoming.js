@@ -38,6 +38,7 @@ function Upcoming({ imageUrl }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     getUpcomingMovies();
+    setSearchTerm("");
   }, [page]);
 
   return (

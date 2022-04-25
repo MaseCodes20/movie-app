@@ -38,6 +38,7 @@ function Toprated({ imageUrl }) {
   useEffect(() => {
     window.scrollTo(0, 0);
     getTopRatedMovies();
+    setSearchTerm("");
   }, [page]);
 
   return (
