@@ -14,7 +14,11 @@ function MobileMenu() {
   return (
     <div>
       <Menu as="div" className="mr-3 lg:hidden">
-        <Menu.Button className="menuButton" name="menu button">
+        <Menu.Button
+          className="menuButton"
+          name="menu button"
+          aria-label="Menu button"
+        >
           <MenuIcon className="h-7 lg:hidden hover:text-pink-500" />
         </Menu.Button>
 

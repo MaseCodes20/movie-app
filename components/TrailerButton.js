@@ -1,13 +1,10 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { loadingState } from "../atoms/loading";
 import { selectedState } from "../atoms/selectedAtom";
 
 function TrailerButton({ id }) {
   const [selected, setSelected] = useRecoilState(selectedState);
-  const [loading, setLoading] = useRecoilState(loadingState);
-
   const [trailers, setTrailers] = useState([]);
 
   useEffect(() => {
@@ -25,7 +22,6 @@ function TrailerButton({ id }) {
           .then((response) => response.json())
           .then((response) => {
             setTrailers(response.data);
-            setLoading(false);
           });
 
         return response;

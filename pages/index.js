@@ -18,8 +18,8 @@ export default function Home({ imageUrl }) {
       <div className="contentContainer">
         <Head>
           <title>Movie App</title>
-          <meta name="description" content="movie app" />
-          <link rel="icon" href="/favicon.ico" />
+          <meta name="description" content="Movie App" />
+          <link rel="icon" href="/cinema_popcorn_icon-icons.com_66128.ico" />
         </Head>
         <Header setSearchTerm={setSearchTerm} />
 
