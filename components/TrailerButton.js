@@ -10,28 +10,37 @@ function TrailerButton({ id }) {
 
   const [trailers, setTrailers] = useState([]);
 
-  const getTrailers = async () => {
-    try {
-      const response = await fetch(`/api/trailer?id=${id}`, {
-        headers: {
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-        .then((response) => response.json())
-        .then((response) => {
-          setTrailers(response.data);
-          setLoading(false);
-        });
-
-      return response;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
+    const abortController = new AbortController();
+
+    const getTrailers = async () => {
+      try {
+        const response = await fetch(`/api/trailer?id=${id}`, {
+          signal: abortController.signal,
+          headers: {
+            Accept: "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            setTrailers(response.data);
+            setLoading(false);
+          });
+
+        return response;
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error(error);
+        }
+      }
+    };
+
     getTrailers();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   const toggle = (id) => {

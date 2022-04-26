@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import React from "react";
+import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { loadingState } from "../atoms/loading";
 import { moviesState } from "../atoms/moviesState";
 import { searchState } from "../atoms/searchAtom";
 import MobileMenu from "./MobileMenu";
@@ -12,23 +13,28 @@ function Header({ setSearchTerm }) {
   const [movies, setMovies] = useRecoilState(moviesState);
 
   const getMoviesData = async () => {
-    await fetch(`/api/search?searchTerm=${searchTerm}`, {
-      headers: {
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setMovies(response.data);
+    try {
+      const response = await fetch(`/api/search?searchTerm=${searchTerm}`, {
+        headers: {
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
       })
-      .catch((error) => console.error(error));
+        .then((response) => response.json())
+        .then((movies) => {
+          setMovies(movies.data);
+        });
+
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     getMoviesData();
-  };
+  }, [searchTerm]);
+
   return (
     <nav className="headerContainer">
       <button
@@ -38,16 +44,14 @@ function Header({ setSearchTerm }) {
         <h1>Movie App</h1>
       </button>
       <div className="flex flex-1 mx-auto justify-center">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Search by title..."
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-            className="searchInput"
-          />
-        </form>
+        <input
+          type="text"
+          placeholder="Search by title..."
+          onChange={(event) => {
+            setSearchTerm(event.target.value);
+          }}
+          className="searchInput"
+        />
       </div>
       <WebMenu />
       <MobileMenu />
