@@ -59,8 +59,12 @@ function Toprated({ imageUrl }) {
               <Loading loadingMovies={loading} />
             ) : (
               <>
-                <Movies movies={topRatedMovies} image={imageUrl} />
-                <PageNavButtons setPage={setPage} page={page} />
+                {topRatedMovies.length > 0 && (
+                  <>
+                    <Movies movies={topRatedMovies} image={imageUrl} />
+                    <PageNavButtons setPage={setPage} page={page} />
+                  </>
+                )}
               </>
             )}
           </>

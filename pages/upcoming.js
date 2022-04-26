@@ -59,8 +59,12 @@ function Upcoming({ imageUrl }) {
               <Loading loadingMovies={loading} />
             ) : (
               <>
-                <Movies movies={upcomingMovies} image={imageUrl} />
-                <PageNavButtons setPage={setPage} page={page} />
+                {upcomingMovies.length > 0 && (
+                  <>
+                    <Movies movies={upcomingMovies} image={imageUrl} />
+                    <PageNavButtons setPage={setPage} page={page} />
+                  </>
+                )}
               </>
             )}
           </>

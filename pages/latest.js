@@ -61,8 +61,12 @@ function Latest({ imageUrl }) {
               </>
             ) : (
               <>
-                <Movies movies={latestMovies} image={imageUrl} />
-                <PageNavButtons setPage={setPage} page={page} />
+                {latestMovies.length > 0 && (
+                  <>
+                    <Movies movies={latestMovies} image={imageUrl} />
+                    <PageNavButtons setPage={setPage} page={page} />
+                  </>
+                )}
               </>
             )}
           </>

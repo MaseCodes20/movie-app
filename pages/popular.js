@@ -59,8 +59,12 @@ function Popular({ imageUrl }) {
               <Loading loadingMovies={loading} />
             ) : (
               <>
-                <Movies movies={popularMovies} image={imageUrl} />
-                <PageNavButtons setPage={setPage} page={page} />
+                {popularMovies.length > 0 && (
+                  <>
+                    <Movies movies={popularMovies} image={imageUrl} />
+                    <PageNavButtons setPage={setPage} page={page} />
+                  </>
+                )}
               </>
             )}
           </>

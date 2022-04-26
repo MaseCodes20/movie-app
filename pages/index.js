@@ -24,8 +24,10 @@ export default function Home({ imageUrl }) {
         <Header setSearchTerm={setSearchTerm} />
 
         {searchTerm !== "" ? (
-          <div className="lg:h-[600px]  lg:mt-8 top-0 bottom-0 overflow-y-scroll scrollbar-hide">
-            <SearchMovies image={imageUrl} />
+          <div className="centered w-full">
+            <div className="lg:h-[600px] top-0 bottom-0 overflow-y-scroll scrollbar-hide">
+              <SearchMovies image={imageUrl} />
+            </div>
           </div>
         ) : (
           <div className="centered text-center">
