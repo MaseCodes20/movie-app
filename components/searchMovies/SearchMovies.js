@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { moviesState } from "../../atoms/moviesState";
+import { moviesState } from "../../atoms/moviesAtom";
 import { searchState } from "../../atoms/searchAtom";
 import Movie from "../Movie";
 

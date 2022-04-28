@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { loadingState } from "../atoms/loading";
+import { loadingState } from "../atoms/loadingAtom";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -9,11 +9,12 @@ import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 import Head from "next/head";
+import { pageState } from "../atoms/pageAtom";
 
 function Upcoming({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useRecoilState(pageState);
   const [loading, setLoading] = useRecoilState(loadingState);
 
   const getUpcomingMovies = async () => {

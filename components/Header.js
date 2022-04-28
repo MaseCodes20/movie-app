@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { loadingState } from "../atoms/loading";
-import { moviesState } from "../atoms/moviesState";
+import { moviesState } from "../atoms/moviesAtom";
 import { searchState } from "../atoms/searchAtom";
 import MobileMenu from "./MobileMenu";
 import WebMenu from "./WebMenu";

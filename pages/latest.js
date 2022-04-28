@@ -7,13 +7,14 @@ import Movies from "../components/Movies";
 import PageNavButtons from "../components/PageNavButtons";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 import Loading from "../components/Loading";
-import { loadingState } from "../atoms/loading";
 import Head from "next/head";
+import { loadingState } from "../atoms/loadingAtom";
+import { pageState } from "../atoms/pageAtom";
 
 function Latest({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [latestMovies, setLatestMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useRecoilState(pageState);
   const [loading, setLoading] = useRecoilState(loadingState);
 
   const getLatestMovies = async () => {

@@ -24,7 +24,6 @@ function MoviePage({
 
   const { title, poster_path } = details;
 
-  console.log(providers);
   return (
     <div className="pageContainer">
       <div className="contentContainer">
