@@ -24,6 +24,7 @@ function MoviePage({
 
   const { title, poster_path } = details;
 
+  console.log(providers);
   return (
     <div className="pageContainer">
       <div className="contentContainer">
@@ -47,7 +48,7 @@ function MoviePage({
               <div className="mx-8">
                 <div className="md:flex justify-center">
                   <Details details={details} imageUrl={imageUrl} />
-                  <Providers providers={providers} />
+                  {providers.US && <Providers providers={providers} />}
                 </div>
 
                 <div className="text-sm">
