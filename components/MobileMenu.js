@@ -8,9 +8,13 @@ import {
   PlayIcon,
   StarIcon,
 } from "@heroicons/react/solid";
+import { useRecoilState } from "recoil";
+import { pageState } from "../atoms/pageAtom";
 
 function MobileMenu() {
+  const [page, setPage] = useRecoilState(pageState);
   const router = useRouter();
+
   return (
     <div>
       <Menu as="div" className="mr-3 lg:hidden">
@@ -30,7 +34,10 @@ function MobileMenu() {
                   className={`mobileMenuLink ${
                     active && "mobileMenuLinkActive rounded-t-md"
                   }`}
-                  onClick={() => router.push("/latest")}
+                  onClick={() => {
+                    router.push("/latest");
+                    setPage(1);
+                  }}
                 >
                   <PlayIcon className="menuIcon" />
                   LATEST
@@ -43,7 +50,10 @@ function MobileMenu() {
                   className={`mobileMenuLink ${
                     active && "mobileMenuLinkActive"
                   }`}
-                  onClick={() => router.push("/upcoming")}
+                  onClick={() => {
+                    router.push("/upcoming");
+                    setPage(1);
+                  }}
                 >
                   <FilmIcon className="menuIcon" />
                   UPCOMING
@@ -56,7 +66,10 @@ function MobileMenu() {
                   className={`mobileMenuLink ${
                     active && "mobileMenuLinkActive"
                   }`}
-                  onClick={() => router.push("/popular")}
+                  onClick={() => {
+                    router.push("/popular");
+                    setPage(1);
+                  }}
                 >
                   <FireIcon className="menuIcon" />
                   POPULAR
@@ -69,7 +82,10 @@ function MobileMenu() {
                   className={`mobileMenuLink ${
                     active && "mobileMenuLinkActive rounded-b-md"
                   }`}
-                  onClick={() => router.push("/toprated")}
+                  onClick={() => {
+                    router.push("/toprated");
+                    setPage(1);
+                  }}
                 >
                   <StarIcon className="menuIcon" />
                   TOP RATED
