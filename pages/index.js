@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Welcome from "../components/homePage/Welcome";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 
 export default function Home({ imageUrl }) {
@@ -23,17 +24,14 @@ export default function Home({ imageUrl }) {
         </Head>
         <Header setSearchTerm={setSearchTerm} />
 
-        {searchTerm !== "" ? (
+        {searchTerm ? (
           <div className="centered w-full">
             <div className="lg:h-[600px] top-0 bottom-0 overflow-y-scroll scrollbar-hide">
               <SearchMovies image={imageUrl} />
             </div>
           </div>
         ) : (
-          <div className="centered text-center">
-            <h1 className="font-bold text-3xl">Welcome to the movie app</h1>
-            <p>Need a movie for movie night?</p>
-          </div>
+          <Welcome />
         )}
 
         <Footer />
