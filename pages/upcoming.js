@@ -37,8 +37,6 @@ function Upcoming({ imageUrl }) {
     }
   };
 
-  console.log(loading);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);

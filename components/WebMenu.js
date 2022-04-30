@@ -14,6 +14,7 @@ function WebMenu() {
           setPage(1);
         }}
         className="webMenuItems"
+        aria-label="Latest page button"
       >
         Latest
       </button>
@@ -23,6 +24,7 @@ function WebMenu() {
           setPage(1);
         }}
         className="webMenuItems"
+        aria-label="Upcoming page button"
       >
         Upcoming
       </button>
@@ -32,6 +34,7 @@ function WebMenu() {
           setPage(1);
         }}
         className="webMenuItems"
+        aria-label="Popular page button"
       >
         popular
       </button>
@@ -41,6 +44,7 @@ function WebMenu() {
           setPage(1);
         }}
         className="webMenuItems"
+        aria-label="Toprated page button"
       >
         Top rated
       </button>
