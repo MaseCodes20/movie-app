@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { loadingState } from "../atoms/loadingAtom";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
@@ -14,7 +14,7 @@ import { pageState } from "../atoms/pageAtom";
 function Popular({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [popularMovies, setPopularMovies] = useState([]);
-  const [page, setPage] = useRecoilState(pageState);
+  const page = useRecoilValue(pageState);
   const [loading, setLoading] = useRecoilState(loadingState);
 
   const getPopularMovies = async () => {
@@ -39,6 +39,7 @@ function Popular({ imageUrl }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
     getPopularMovies();
     setSearchTerm("");
   }, [page]);
@@ -63,7 +64,7 @@ function Popular({ imageUrl }) {
                 {popularMovies.length > 0 && (
                   <>
                     <Movies movies={popularMovies} image={imageUrl} />
-                    <PageNavButtons setPage={setPage} page={page} />
+                    <PageNavButtons />
                   </>
                 )}
               </>

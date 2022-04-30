@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -14,7 +14,7 @@ import { pageState } from "../atoms/pageAtom";
 function Latest({ imageUrl }) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
   const [latestMovies, setLatestMovies] = useState([]);
-  const [page, setPage] = useRecoilState(pageState);
+  const page = useRecoilValue(pageState);
   const [loading, setLoading] = useRecoilState(loadingState);
 
   const getLatestMovies = async () => {
@@ -39,6 +39,7 @@ function Latest({ imageUrl }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
     getLatestMovies();
     setSearchTerm("");
   }, [page]);
@@ -65,7 +66,7 @@ function Latest({ imageUrl }) {
                 {latestMovies.length > 0 && (
                   <>
                     <Movies movies={latestMovies} image={imageUrl} />
-                    <PageNavButtons setPage={setPage} page={page} />
+                    <PageNavButtons />
                   </>
                 )}
               </>

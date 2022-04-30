@@ -1,14 +1,19 @@
-import React from "react";
+import { useCallback } from "react";
+import { useRecoilState } from "recoil";
+import { pageState } from "../atoms/pageAtom";
 
-function PageNavButtons({ setPage, page }) {
-  const nextPage = () => {
+function PageNavButtons() {
+  const [page, setPage] = useRecoilState(pageState);
+
+  const nextPage = useCallback(() => {
     setPage((prev) => prev + 1);
-  };
+  }, [page]);
 
-  const prevPage = () => {
+  const prevPage = useCallback(() => {
     if (page === 1) return;
     setPage((prev) => prev - 1);
-  };
+  }, [page]);
+
   return (
     <div className="pageNavContainer">
       <button className="pageNavButton" onClick={() => prevPage()}>
