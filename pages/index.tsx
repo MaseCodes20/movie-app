@@ -7,7 +7,11 @@ import Header from "../components/Header";
 import Welcome from "../components/homePage/Welcome";
 import SearchMovies from "../components/searchMovies/SearchMovies";
 
-export default function Home({ imageUrl }) {
+type HomeProps = {
+  imageUrl: string
+}
+
+export default function Home({ imageUrl }: HomeProps) {
   const [searchTerm, setSearchTerm] = useRecoilState(searchState);
 
   useEffect(() => {
