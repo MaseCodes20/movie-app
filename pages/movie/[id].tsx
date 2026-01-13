@@ -10,114 +10,15 @@ import Providers from "../../components/moviePage/Providers"
 import SimilarMovies from "../../components/moviePage/SimilarMovies"
 import Videos from "../../components/moviePage/Videos"
 import SearchMovies from "../../components/searchMovies/SearchMovies"
+import { MovieCredits, MovieDetails, MovieSimilarMovies, MovieVideos, WatchProvidersResponse } from "../../types"
 
-export interface WatchProvider {
-  logo_path: string
-  provider_id: number
-  provider_name: string
-  display_priority: number
-}
-
-// 2. Define the availability types for a specific country
-export interface CountryWatchData {
-  link: string
-  buy?: WatchProvider[]
-  rent?: WatchProvider[]
-  flatrate?: WatchProvider[] // Added because TMDB often includes this for subscriptions
-  ads?: WatchProvider[] // Some movies are available free with ads
-}
-
-// 3. Define the main Providers object using a Record for country codes
-// This allows for any ISO 3166-1 country code as a key
-export type WatchProvidersResponse = Record<string, CountryWatchData>
 
 type MoviePageProps = {
   id: string
-  details: {
-    adult: boolean
-    backdrop_path: string
-    belongs_to_collection: any
-    budget: number
-    genres: {
-      id: number
-      name?: string
-    }[]
-    homepage: string
-    id: 628847
-    imdb_id: string
-    origin_country: string[]
-    original_language: string
-    original_title: string
-    overview: string
-    popularity: number
-    poster_path: string
-    production_companies: {
-      id: 7355
-      logo_path: string
-      name: string
-      origin_country: string
-    }[]
-    production_countries: {
-      iso_3166_1: string
-      name: string
-    }[]
-    release_date: string
-    revenue: number
-    runtime: number
-    spoken_languages: {
-      english_name: string
-      iso_639_1: string
-      name: string
-    }[]
-    status: string
-    tagline: string
-    title: string
-    video: boolean
-    vote_average: number
-    vote_count: number
-  }
-  credits: {
-    adult: boolean
-    gender: number
-    id: number
-    known_for_department: string
-    name: string
-    original_name: string
-    popularity: number
-    profile_path: string
-    cast_id: number
-    character: number
-    credit_id: string
-    order: number
-  }[]
-  similarMovies: {
-    adult: boolean
-    backdrop_path: string
-    genre_ids: number[]
-    id: number
-    original_language: string
-    original_title: string
-    overview: string
-    popularity: number
-    poster_path: string
-    release_date: Date
-    title: string
-    video: boolean
-    vote_average: number
-    vote_count: number
-  }[]
-  videos: {
-    iso_639_1: string
-    iso_3166_1: string
-    name: string
-    key: string
-    site: string
-    size: number
-    type: string
-    official: boolean
-    published_at: Date
-    id: string
-  }[]
+  details: MovieDetails
+  credits: MovieCredits[]
+  similarMovies: MovieSimilarMovies[]
+  videos: MovieVideos[]
   imageUrl: string
   providers: WatchProvidersResponse
 }
@@ -126,16 +27,6 @@ function MoviePage({ details, credits, providers, videos, similarMovies, imageUr
   const [searchTerm, setSearchTerm] = useRecoilState(searchState)
 
   const { title, poster_path } = details
-
-  console.log({
-    details,
-    credits,
-    providers,
-    videos,
-    similarMovies,
-    imageUrl,
-    id,
-  })
 
   return (
     <div className="pageContainer">

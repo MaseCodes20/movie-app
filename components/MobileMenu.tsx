@@ -1,5 +1,4 @@
-import { Menu } from "@headlessui/react";
-import React from "react";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useRouter } from "next/router";
 import {
   FilmIcon,
@@ -12,23 +11,23 @@ import { useRecoilState } from "recoil";
 import { pageState } from "../atoms/pageAtom";
 
 function MobileMenu() {
-  const [page, setPage] = useRecoilState(pageState);
+  const [_, setPage] = useRecoilState(pageState);
   const router = useRouter();
 
   return (
     <div>
       <Menu as="div" className="mr-3 lg:hidden">
-        <Menu.Button
+        <MenuButton
           className="menuButton"
           name="menu button"
           aria-label="Menu button"
         >
           <MenuIcon className="h-7 lg:hidden hover:text-pink-500" />
-        </Menu.Button>
+        </MenuButton>
 
-        <Menu.Items className="menuItemsContainer">
+        <MenuItems className="menuItemsContainer">
           <div className="rounded-md">
-            <Menu.Item>
+            <MenuItem>
               {({ active }) => (
                 <a
                   className={`mobileMenuLink ${
@@ -43,8 +42,8 @@ function MobileMenu() {
                   LATEST
                 </a>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </MenuItem>
+            <MenuItem>
               {({ active }) => (
                 <a
                   className={`mobileMenuLink ${
@@ -59,8 +58,8 @@ function MobileMenu() {
                   UPCOMING
                 </a>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </MenuItem>
+            <MenuItem>
               {({ active }) => (
                 <a
                   className={`mobileMenuLink ${
@@ -75,8 +74,8 @@ function MobileMenu() {
                   POPULAR
                 </a>
               )}
-            </Menu.Item>
-            <Menu.Item>
+            </MenuItem>
+            <MenuItem>
               {({ active }) => (
                 <a
                   className={`mobileMenuLink ${
@@ -91,9 +90,9 @@ function MobileMenu() {
                   TOP RATED
                 </a>
               )}
-            </Menu.Item>
+            </MenuItem>
           </div>
-        </Menu.Items>
+        </MenuItems>
       </Menu>
     </div>
   );

@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { PacmanLoader } from "react-spinners";
 
-function Loading({ loadingMovies }) {
-  const [color, setColor] = useState("#ffffff");
+type LoadingProps = {
+  loadingMovies: boolean
+}
+
+function Loading({ loadingMovies }: LoadingProps) {
+  const [color,_] = useState("#ffffff");
 
   return (
     <div className="flex justify-center items-center min-h-screen">

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-function useFetchMovies(url) {
+function useFetchMovies(url: string) {
   const [movies, setMovies] = useState([]);
   const [loadingMovies, setLoadingMovies] = useState(false);
   const mountedRef = useRef(true);

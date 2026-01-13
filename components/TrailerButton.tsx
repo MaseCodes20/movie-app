@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { selectedState } from "../atoms/selectedAtom";
 
-function TrailerButton({ id }) {
+type TrailerButtonProps = {
+  id: number
+}
+
+function TrailerButton({ id }: TrailerButtonProps) {
   const [selected, setSelected] = useRecoilState(selectedState);
   const [trailers, setTrailers] = useState([]);
 

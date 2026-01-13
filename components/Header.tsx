@@ -6,10 +6,14 @@ import { searchState } from "../atoms/searchAtom";
 import MobileMenu from "./MobileMenu";
 import WebMenu from "./WebMenu";
 
-function Header({ setSearchTerm }) {
+type HeaderProps = {
+  setSearchTerm: (val: string) => void
+}
+
+function Header({ setSearchTerm }: HeaderProps) {
   const router = useRouter();
   const searchTerm = useRecoilValue(searchState);
-  const [movies, setMovies] = useRecoilState(moviesState);
+  const [_, setMovies] = useRecoilState(moviesState);
 
   const getMoviesData = async () => {
     try {

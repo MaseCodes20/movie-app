@@ -1,7 +1,18 @@
 import React from "react";
 import Movie from "./Movie";
+import { MovieT } from "../types";
 
-function Movies({ movies, image }) {
+type MoviesProps = {
+  movies: MovieT[]
+  image: string
+}
+
+function Movies({ movies, image }: MoviesProps) {
+
+  console.log({
+    movies,
+    image
+  })
   return (
     <div className="moviesContainer">
       {movies

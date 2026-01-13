@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import React from "react";
 import { useRecoilState } from "recoil";
 import { pageState } from "../atoms/pageAtom";
 
@@ -13,7 +12,7 @@ function WebMenu() {
           router.push("/latest");
           setPage(1);
         }}
-        className="webMenuItems"
+        className={`webMenuItems ${page === 1 ? "font-bold" : ""}`}
         aria-label="Latest page button"
       >
         Latest
@@ -21,9 +20,9 @@ function WebMenu() {
       <button
         onClick={() => {
           router.push("/upcoming");
-          setPage(1);
+          setPage(2);
         }}
-        className="webMenuItems"
+        className={`webMenuItems ${page === 2 ? "font-bold" : ""}`}
         aria-label="Upcoming page button"
       >
         Upcoming
@@ -31,9 +30,9 @@ function WebMenu() {
       <button
         onClick={() => {
           router.push("/popular");
-          setPage(1);
+          setPage(3);
         }}
-        className="webMenuItems"
+        className={`webMenuItems ${page === 3 ? "font-bold" : ""}`}
         aria-label="Popular page button"
       >
         popular
@@ -41,9 +40,9 @@ function WebMenu() {
       <button
         onClick={() => {
           router.push("/toprated");
-          setPage(1);
+          setPage(4);
         }}
-        className="webMenuItems"
+        className={`webMenuItems ${page === 4 ? "font-bold" : ""}`}
         aria-label="Toprated page button"
       >
         Top rated

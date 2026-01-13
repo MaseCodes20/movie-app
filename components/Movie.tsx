@@ -2,8 +2,14 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { searchState } from "../atoms/searchAtom";
 import TrailerButton from "./TrailerButton";
+import { MovieT } from "../types";
 
-function Movie({ movie, image }) {
+type MovieProps = {
+  movie: MovieT
+  image: string
+}
+
+function Movie({ movie, image }: MovieProps) {
   const [serchTerm, setSearchTerm] = useRecoilState(searchState);
   const router = useRouter();
 
