@@ -1,6 +1,11 @@
-import React from "react";
+import { MovieDetails } from "../../types";
 
-function Details({ details, imageUrl }) {
+type DetailsProps = {
+  details: MovieDetails
+  imageUrl: string
+}
+
+function Details({ details, imageUrl }: DetailsProps) {
   const {
     title,
     overview,

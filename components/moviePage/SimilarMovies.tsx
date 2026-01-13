@@ -1,7 +1,12 @@
-import React from "react";
+import { MovieSimilarMovies } from "../../types";
 import Movie from "../Movie";
 
-function SimilarMovies({ similarMovies, image }) {
+type SimilarMoviesProps = {
+  similarMovies: MovieSimilarMovies[]
+  image: string
+}
+
+function SimilarMovies({ similarMovies, image }: SimilarMoviesProps) {
   return (
     <>
       <h1 className="text-center mt-6 text-3xl">Similar Movies</h1>

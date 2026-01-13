@@ -1,7 +1,13 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
+import { MovieVideos } from "../../types";
 
-function Videos({ videos, id }) {
+type VideosProps = {
+  videos: MovieVideos[]
+  id: string
+}
+
+function Videos({ videos, id }: VideosProps) {
   const [selectedVideos, setSelectedVideos] = useState([]);
 
   useEffect(() => {

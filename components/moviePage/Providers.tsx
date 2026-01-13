@@ -1,6 +1,10 @@
-import React from "react";
+import { WatchProvidersResponse } from "../../types";
 
-function Providers({ providers }) {
+type ProvidersProps = {
+  providers: WatchProvidersResponse
+}
+
+function Providers({ providers }: ProvidersProps) {
   const { buy, rent } = providers.US;
 
   return (

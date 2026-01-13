@@ -1,7 +1,13 @@
 import { PlusIcon } from "@heroicons/react/solid";
 import { useState, useEffect } from "react";
+import { MovieCredits } from "../../types";
 
-function Cast({ id, credits }) {
+type CastProps = {
+  id: string,
+  credits: MovieCredits[]
+}
+
+function Cast({ id, credits }: CastProps) {
   const [selectedCast, setSelectedCast] = useState([]);
 
   useEffect(() => {

@@ -4,7 +4,11 @@ import { moviesState } from "../../atoms/moviesAtom";
 import { searchState } from "../../atoms/searchAtom";
 import Movie from "../Movie";
 
-function SearchMovies({ image }) {
+type SearchMoviesProps = {
+  image: string
+}
+
+function SearchMovies({ image }: SearchMoviesProps) {
   const searchTerm = useRecoilValue(searchState);
   const movies = useRecoilValue(moviesState);
 

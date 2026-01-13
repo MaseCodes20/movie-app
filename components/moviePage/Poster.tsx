@@ -1,6 +1,10 @@
-import React from "react";
+type PosterProps = {
+  imageUrl: string
+  poster_path: string
+  title: string
+}
 
-function Poster({ imageUrl, poster_path, title }) {
+function Poster({ imageUrl, poster_path, title }: PosterProps) {
   return (
     <>
       <img
